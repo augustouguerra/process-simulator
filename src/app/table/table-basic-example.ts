@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 export interface PeriodicElement {
   name: string;
@@ -28,7 +28,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['table-basic-example.css'],
   templateUrl: 'table-basic-example.html',
 })
-export class TableBasicExample {
+export class TableBasicExample implements OnInit{
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+
+  ngOnInit() {
+    this.dataSource = ELEMENT_DATA;
+  }
 }
+

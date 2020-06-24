@@ -55,6 +55,10 @@ export class AppComponent {
     console.log(arrayWithPrioritySorted);
   }
 
+  srtAlg() {
+    
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
@@ -66,6 +70,9 @@ export class AppComponent {
       this.animal = result;
     });
   }
+
+
+
 }
 
 
