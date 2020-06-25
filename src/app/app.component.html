@@ -39,6 +39,13 @@
 </div>
 <p>Algoritmos</p>
 <button class="btn-primary" (click)="fifo()">FIFO</button>
+<div>
+  <mat-form-field>
+    <mat-label>Quantum</mat-label>
+    <input matInput [(ngModel)]="quantum">
+  </mat-form-field>
+</div>
+<button class="btn-primary" (click)="roundRobin()">Round Robin</button>
 
 <table-basic-example>
     
