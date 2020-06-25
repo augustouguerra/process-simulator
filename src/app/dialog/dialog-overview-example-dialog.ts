@@ -18,6 +18,13 @@ export class DialogOverviewExampleDialog {
   animal: string;
   name: string;
 
+  processTypes = [
+    'First Come First Out (FIFO)',
+    'Round Robin (RR)',
+    'Shortest Remaining Time (SRT)',
+    'Shortest Process Next  (SRT)'
+  ]
+
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
@@ -26,4 +33,7 @@ export class DialogOverviewExampleDialog {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+
+
 }

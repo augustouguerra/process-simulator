@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { FormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     FormsModule,
     MatDialogModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
