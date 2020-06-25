@@ -187,6 +187,21 @@ export class AppComponent {
       }
     }
   }
+  srtAlgArray = [
+ 
+    {
+      tiempoRestante: 5,
+      tiempoEstimado: 5
+    },
+    {
+      tiempoRestante: 10,
+      tiempoEstimado: 10
+    },
+    {
+      tiempoRestante: 3,
+      tiempoEstimado: 3
+    }
+  ]
 
   add() {
     const arrayWithoutPriority = [];
@@ -214,10 +229,10 @@ export class AppComponent {
 
     const arrayWithPriority = [];
 
-    arrayWithPriority.push({ value: 10, priority: 3 });
-    arrayWithPriority.push({ value: 15, priority: 1 });
-    arrayWithPriority.push({ value: 13, priority: 5 });
-    arrayWithPriority.push({ value: 11, priority: 10 });
+    arrayWithPriority.push({ tiempoServicio: Math.floor(Math.random() * 11), priority: 3 });
+    arrayWithPriority.push({ tiempoServicio: Math.floor(Math.random() * 11), priority: 1 });
+    arrayWithPriority.push({ tiempoServicio: Math.floor(Math.random() * 11), priority: 5 });
+    arrayWithPriority.push({ tiempoServicio: Math.floor(Math.random() * 11), priority: 10 });
 
     let arrayWithPrioritySorted = arrayWithPriority.sort((a, b) => {
       return a.priority - b.priority;
@@ -226,7 +241,11 @@ export class AppComponent {
   }
 
   srtAlg() {
-    
+    console.log(this.srtAlgArray);
+    let srtAlgArraySorted = this.srtAlgArray.sort((a, b) => {
+      return a.tiempoRestante - b.tiempoRestante;
+    });
+    console.log(srtAlgArraySorted);
   }
 
   openDialog(): void {
@@ -241,7 +260,9 @@ export class AppComponent {
     });
   }
 
+  procesador() {
 
+  }
 
 }
 
