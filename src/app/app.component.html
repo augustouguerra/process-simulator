@@ -15,6 +15,30 @@
       You chose: <i>{{animal}}</i>
     </li>
 </ol>
+<div>
+  <p>Nuevo proceso</p>
+<div>
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="processName">
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Tiempo de llegada</mat-label>
+    <input matInput [(ngModel)]="processArrivalTime">
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Tiempo de ejecución</mat-label>
+    <input matInput [(ngModel)]="processExecuteTime">
+  </mat-form-field>
+</div>
+<button class="btn-primary" (click)="addProcess()">Añadir proceso</button>
+</div>
+<p>Algoritmos</p>
+<button class="btn-primary" (click)="fifo()">FIFO</button>
 
 <table-basic-example>
     
