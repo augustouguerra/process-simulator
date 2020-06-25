@@ -33,10 +33,15 @@ export class AppComponent {
 
 
   fifo(){
+    this.finishedProcesses = [];
     let time = 0;
 
     console.log('Ordeno los procesos por orden de llegada');
-    let processesSorted = this.processes.sort(function(a,b){
+    let processesSorted = [];
+    this.processes.forEach((proceso)=>{
+      processesSorted.push(proceso);
+    });
+    processesSorted = processesSorted.sort(function(a,b){
       var arrivalTimeA = a.arrivalTime, arrivalTimeB = b.arrivalTime
       if (arrivalTimeA < arrivalTimeB) return -1;
       if (arrivalTimeA > arrivalTimeB) return 1;
@@ -80,11 +85,16 @@ export class AppComponent {
   }
 
   roundRobin(){
+    this.finishedProcesses = [];
     let time = 0;
     let quantumAcumulated = 0;
 
     console.log('Ordeno los procesos por tiempo de llegada');
-    let procesosOrdenados = this.processes.sort(function(a,b){
+    let procesosOrdenados = [];
+    this.processes.forEach((proceso)=>{
+      procesosOrdenados.push(proceso);
+    });
+    procesosOrdenados = procesosOrdenados.sort(function(a,b){
       var arrivalTimeA = a.arrivalTime, arrivalTimeB = b.arrivalTime
       if (arrivalTimeA < arrivalTimeB) return -1;
       if (arrivalTimeA > arrivalTimeB) return 1;
@@ -189,16 +199,22 @@ export class AppComponent {
   }
 
   spn(){
+    this.finishedProcesses = [];
     let time = 0;
 
     console.log('Ordeno los procesos por tiempo de llegada');
-    let procesosOrdenados = this.processes.sort(function(a,b){
+    let procesosOrdenados = [];
+    this.processes.forEach((proceso)=>{
+      procesosOrdenados.push(proceso);
+    });
+    procesosOrdenados = procesosOrdenados.sort(function(a,b){
       var arrivalTimeA = a.arrivalTime, arrivalTimeB = b.arrivalTime
       if (arrivalTimeA < arrivalTimeB) return -1;
       if (arrivalTimeA > arrivalTimeB) return 1;
       return 0;
     });
     console.log(procesosOrdenados);
+
 
     let continuarAlgoritmo = true;
     let procesoActual = null;
