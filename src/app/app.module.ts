@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { DialogOverviewExampleDialog } from './dialog/dialog-overview-example-dialog';
-import { TableBasicExample } from './table/table-basic-example';
+import { TableProcesses } from './table/table-processes/table-processes.component';
+import { TableFinishedProcesses } from './table/table-finished-processes/table-finished-processes.component';
+
 
 // Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +21,8 @@ import {MatSelectModule } from '@angular/material/select';
   declarations: [
     AppComponent,
     DialogOverviewExampleDialog,
-    TableBasicExample
+    TableProcesses,
+    TableFinishedProcesses
   ],
   imports: [
     BrowserModule,

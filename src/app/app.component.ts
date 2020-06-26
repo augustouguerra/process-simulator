@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogOverviewExampleDialog } from './dialog/dialog-overview-example-dialog'; 
+import { TableProcesses } from './table/table-processes/table-processes.component';
 
 export interface DialogData {
   animal: string;
@@ -12,11 +13,17 @@ export interface DialogData {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
+  @ViewChild('child') elemntRef: TableProcesses;
+  
   constructor(public dialog: MatDialog) {}
 
   animal: string;
   name: string;
+
+  array = [];
+
+  
 
   processName: string;
   processArrivalTime: number;
@@ -29,6 +36,7 @@ export class AppComponent {
   addProcess(){
     this.processes.push({name: this.processName, arrivalTime: this.processArrivalTime, executeTime: this.processExecuteTime});
     console.log(this.processes);
+    this.elemntRef.populate(this.processes);
   }
 
 
@@ -74,9 +82,11 @@ export class AppComponent {
         processActual = null;
         if(processesSorted.length === 0){
           finishProcess = false;
-        } 
+          this.elemntRef.as();
+        }
       }
     }
+    
   }
 
   roundRobin(){

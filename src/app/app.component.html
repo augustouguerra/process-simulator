@@ -3,20 +3,6 @@
 <button class="btn-primary" (click)="add()">ADD</button>
 
 <button class="btn-primary" (click)="srtAlg()">SRT</button>
-<ol>
-    <li>
-      <mat-form-field>
-        <mat-label>What's your name?</mat-label>
-        <input matInput [(ngModel)]="name">
-      </mat-form-field>
-    </li>
-    <li>
-      <button mat-raised-button (click)="openDialog()">Pick one</button>
-    </li>
-    <li *ngIf="animal">
-      You chose: <i>{{animal}}</i>
-    </li>
-</ol>
 <div>
   <p>Nuevo proceso</p>
 <div>
@@ -51,10 +37,13 @@
 
 
 
-<table-basic-example>
-    
-</table-basic-example>
+<table-processes #child>
+</table-processes>
 
+<!--
+<table-finished-processes>
+</table-finished-processes>
+-->
 
 
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 export interface PeriodicElement {
   name: string;
@@ -24,16 +24,19 @@ const ELEMENT_DATA: PeriodicElement[] = [
  * @title Basic use of `<table mat-table>`
  */
 @Component({
-  selector: 'table-basic-example',
-  styleUrls: ['table-basic-example.css'],
-  templateUrl: 'table-basic-example.html',
+  selector: 'table-finished-processes',
+  styleUrls: ['table-finished-processes.component.css'],
+  templateUrl: 'table-finished-processes.component.html',
 })
-export class TableBasicExample implements OnInit{
+export class TableFinishedProcesses implements OnInit{
+
+  @Input('data') data : string; 
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 
   ngOnInit() {
+    console.log(this.data);
     this.dataSource = ELEMENT_DATA;
   }
 }
-
