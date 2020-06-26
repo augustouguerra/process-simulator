@@ -18,6 +18,7 @@ export interface DialogData {
 export class AppComponent {
 
   @ViewChild('matTableViewChild') matTableViewChild: MatTable<any>;
+  @ViewChild('matTableFinishedViewChild') matTableFinishedViewChild: MatTable<any>;
   
   constructor(
     private changeDetectorRefs: ChangeDetectorRef
@@ -39,6 +40,7 @@ export class AppComponent {
   dataSource = [];
   dataSourceFinished = [];
   displayedColumns: string[] = ['name', 'arrivalTime', 'executeTime'];
+  displayedColumnsFinished: string[] = ['name', 'arrivalTime', 'executeTime', 'startTime', 'endingTime', 'stayTime', 'stayExecute'];
 
   addProcess(){
     
@@ -104,7 +106,8 @@ export class AppComponent {
         }
       }
     }
-    
+    this.dataSourceFinished = this.finishedProcesses;
+    this.matTableFinishedViewChild.renderRows();
   }
 
   roundRobin(){
@@ -219,6 +222,8 @@ export class AppComponent {
         procesoActual = null;
       }
     }
+    this.dataSourceFinished = this.finishedProcesses;
+    this.matTableFinishedViewChild.renderRows();
   }
 
   spn(){
@@ -304,9 +309,8 @@ export class AppComponent {
 
 
     }
-
-
-
+    this.dataSourceFinished = this.finishedProcesses;
+    this.matTableFinishedViewChild.renderRows();
   }
 
   add() {
