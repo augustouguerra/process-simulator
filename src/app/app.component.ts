@@ -1,7 +1,8 @@
-import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogOverviewExampleDialog } from './dialog/dialog-overview-example-dialog'; 
 import { TableProcesses } from './table/table-processes/table-processes.component';
+import { MatTable } from '@angular/material/table';
 
 export interface DialogData {
   animal: string;
@@ -16,9 +17,11 @@ export interface DialogData {
 
 export class AppComponent {
 
-  @ViewChild('child') elemntRef: TableProcesses;
+  @ViewChild('matTableViewChild') matTableViewChild: MatTable<any>;
   
-  constructor() {}
+  constructor(
+    private changeDetectorRefs: ChangeDetectorRef
+  ) {}
 
   animal: string;
   name: string;
@@ -33,10 +36,20 @@ export class AppComponent {
   processes = [];
   finishedProcesses = [];
 
+  dataSource = [];
+  dataSourceFinished = [];
+  displayedColumns: string[] = ['name', 'arrivalTime', 'executeTime'];
+
   addProcess(){
+    
     this.processes.push({name: this.processName, arrivalTime: this.processArrivalTime, executeTime: this.processExecuteTime});
     console.log(this.processes);
-    this.elemntRef.populate(this.processes);
+    //this.elemntRef.populate(this.processes);
+
+    this.dataSource = this.processes;
+
+    this.matTableViewChild.renderRows();
+    //this.changeDetectorRefs.detectChanges();
   }
 
 
