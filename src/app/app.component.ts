@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogOverviewExampleDialog } from './dialog/dialog-overview-example-dialog'; 
 import { TableProcesses } from './table/table-processes/table-processes.component';
@@ -13,17 +13,17 @@ export interface DialogData {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements AfterViewInit{
+
+export class AppComponent {
+
   @ViewChild('child') elemntRef: TableProcesses;
   
-  constructor(public dialog: MatDialog) {}
+  constructor() {}
 
   animal: string;
   name: string;
 
   array = [];
-
-  
 
   processName: string;
   processArrivalTime: number;
@@ -87,7 +87,7 @@ export class AppComponent implements AfterViewInit{
         processActual = null;
         if(processesSorted.length === 0){
           finishProcess = false;
-          this.elemntRef.as();
+          
         }
       }
     }
@@ -296,22 +296,6 @@ export class AppComponent implements AfterViewInit{
 
   }
 
-  srtAlgArray = [
- 
-    {
-      tiempoRestante: 5,
-      tiempoEstimado: 5
-    },
-    {
-      tiempoRestante: 10,
-      tiempoEstimado: 10
-    },
-    {
-      tiempoRestante: 3,
-      tiempoEstimado: 3
-    }
-  ]
-
   add() {
     const arrayWithoutPriority = [];
 
@@ -349,6 +333,7 @@ export class AppComponent implements AfterViewInit{
     console.log(arrayWithPrioritySorted);
   }
 
+  /*
   srtAlg() {
     console.log(this.srtAlgArray);
     let srtAlgArraySorted = this.srtAlgArray.sort((a, b) => {
@@ -356,7 +341,9 @@ export class AppComponent implements AfterViewInit{
     });
     console.log(srtAlgArraySorted);
   }
+  */
 
+  /*
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
@@ -368,10 +355,9 @@ export class AppComponent implements AfterViewInit{
       this.animal = result;
     });
   }
+  */
 
-  procesador() {
 
-  }
 
 }
 

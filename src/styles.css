@@ -7,3 +7,14 @@ button {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+main {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+article {
+    margin: 15px;
+    border: 1px solid black;
+}
