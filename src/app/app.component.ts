@@ -41,10 +41,15 @@ export class AppComponent implements AfterViewInit{
 
 
   fifo(){
+    this.finishedProcesses = [];
     let time = 0;
 
     console.log('Ordeno los procesos por orden de llegada');
-    let processesSorted = this.processes.sort(function(a,b){
+    let processesSorted = [];
+    this.processes.forEach((proceso)=>{
+      processesSorted.push(proceso);
+    });
+    processesSorted = processesSorted.sort(function(a,b){
       var arrivalTimeA = a.arrivalTime, arrivalTimeB = b.arrivalTime
       if (arrivalTimeA < arrivalTimeB) return -1;
       if (arrivalTimeA > arrivalTimeB) return 1;
@@ -90,11 +95,16 @@ export class AppComponent implements AfterViewInit{
   }
 
   roundRobin(){
+    this.finishedProcesses = [];
     let time = 0;
     let quantumAcumulated = 0;
 
     console.log('Ordeno los procesos por tiempo de llegada');
-    let procesosOrdenados = this.processes.sort(function(a,b){
+    let procesosOrdenados = [];
+    this.processes.forEach((proceso)=>{
+      procesosOrdenados.push(proceso);
+    });
+    procesosOrdenados = procesosOrdenados.sort(function(a,b){
       var arrivalTimeA = a.arrivalTime, arrivalTimeB = b.arrivalTime
       if (arrivalTimeA < arrivalTimeB) return -1;
       if (arrivalTimeA > arrivalTimeB) return 1;
@@ -197,6 +207,95 @@ export class AppComponent implements AfterViewInit{
       }
     }
   }
+
+  spn(){
+    this.finishedProcesses = [];
+    let time = 0;
+
+    console.log('Ordeno los procesos por tiempo de llegada');
+    let procesosOrdenados = [];
+    this.processes.forEach((proceso)=>{
+      procesosOrdenados.push(proceso);
+    });
+    procesosOrdenados = procesosOrdenados.sort(function(a,b){
+      var arrivalTimeA = a.arrivalTime, arrivalTimeB = b.arrivalTime
+      if (arrivalTimeA < arrivalTimeB) return -1;
+      if (arrivalTimeA > arrivalTimeB) return 1;
+      return 0;
+    });
+    console.log(procesosOrdenados);
+
+
+    let continuarAlgoritmo = true;
+    let procesoActual = null;
+    let processRemainingTime;
+
+    while(continuarAlgoritmo){
+
+      if(procesoActual == null){
+        procesoActual = procesosOrdenados[0];
+        procesoActual['startTime'] = time;
+        procesoActual['endingTime'] = null;
+        procesoActual['stayTime'] = null;
+        processRemainingTime = procesoActual.executeTime;
+      }
+
+      time = time + 1;
+      console.log("Time: " + time);
+
+      processRemainingTime = processRemainingTime - 1;
+      console.log("Remaining time: " + processRemainingTime);
+
+      console.log("Evaluo si el proceso finalizó");
+        if(processRemainingTime === 0){
+          console.log("Elimino el proceso");
+          procesosOrdenados.shift();
+          console.log(procesosOrdenados);
+          console.log("Agrego el proceso a la lista de finalizados");
+          this.finishedProcesses.push({name: procesoActual.name, arrivalTime: procesoActual.arrivalTime, executeTime: procesoActual.executeTime, startTime: procesoActual.startTime, endingTime: time, stayTime: time - procesoActual.arrivalTime});
+          console.log(this.finishedProcesses);
+          procesoActual = null;
+          console.log("Evaluo si no hay más procesos");
+          if(procesosOrdenados.length === 0){
+            console.log("Finalizo el algoritmo");
+            continuarAlgoritmo = false;
+          } else {
+            console.log("Ordeno la cola de procesos");
+            let procesosEnCola = [];
+            let procesosSinLlegar = [];
+            procesosOrdenados.forEach((proceso)=>{
+              if(proceso.arrivalTime <= time){
+                procesosEnCola.push(proceso);
+              } else {
+                procesosSinLlegar.push(proceso);
+              }
+            });
+            console.log(procesosEnCola);
+            console.log(procesosSinLlegar);
+            let procesosEnColaOrdenados = procesosEnCola.sort(function(a,b){
+              var executeTimeA = a.executeTime, executeTimeB = b.executeTime
+              if (executeTimeA < executeTimeB) return -1;
+              if (executeTimeA > executeTimeB) return 1;
+              return 0;
+            });
+            procesosOrdenados = [];
+            procesosEnColaOrdenados.forEach((proceso)=>{
+              procesosOrdenados.push(proceso);
+            });
+            procesosSinLlegar.forEach((proceso)=>{
+              procesosOrdenados.push(proceso);
+            });
+            console.log(procesosOrdenados);
+          }
+        }
+
+
+    }
+
+
+
+  }
+
   srtAlgArray = [
  
     {
